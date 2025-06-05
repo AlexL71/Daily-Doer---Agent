@@ -1,0 +1,23 @@
+# Python general
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+build/
+venv/
+.venv/
+env/
+.env
+
+# Sensitive Files
+config.py # The actual config with your keys
+speech-sa-key.json
+credentials.json
+token.json
+*.log
+*.oga # Downloaded voice files
+
+# OS / IDE specific
+.DS_Store
+.vscode/
+.idea/
