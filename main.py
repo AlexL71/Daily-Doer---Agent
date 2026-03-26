@@ -5,7 +5,7 @@ from bot_handlers import start, handle_text_message, handle_voice_message
 def main():
     try:
         import google_services
-        if not google_services.creds: # Check if creds were successfully loaded/created
+        if not google_services.creds: 
             print("Warning: Google services (Gmail/Calendar) credentials might not have loaded correctly. Please run the bot once to authenticate if needed.")
     except FileNotFoundError as e:
         print(f"ERROR: Critical file for Google services not found: {e}. Gmail/Calendar features will fail.")
