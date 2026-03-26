@@ -1,4 +1,3 @@
-# ai_services.py
 import google.generativeai as genai
 import time
 import config
@@ -11,7 +10,7 @@ def summarize_text_with_gemini(text_to_summarize: str) -> str:
     if text_to_summarize.startswith("Sorry, I couldn't"):
         return text_to_summarize
 
-    model = genai.GenerativeModel('gemini-1.5-flash-latest') # Using consistent model
+    model = genai.GenerativeModel('gemini-1.5-flash-latest')
     prompt = f"""Please provide a quick and concise summary of the following text, ideally in 3 to 5 sentences, 
 focusing on the main points and key information.
 If the text seems to be an error message or indicates failure to retrieve content, please state that clearly.
