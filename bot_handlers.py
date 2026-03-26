@@ -1,4 +1,3 @@
-# bot_handlers.py
 import json
 import os
 import asyncio
@@ -39,7 +38,6 @@ async def execute_bot_action(user_text, message_object_to_reply):
                 if extracted_text.startswith("Sorry, I couldn't"):
                     summary = extracted_text
                 else:
-                    # await message_object_to_reply.reply_text("Content fetched. Now summarizing with Gemini...") # Optional intermediate message
                     summary = summarize_text_with_gemini(extracted_text)
                 await message_object_to_reply.reply_text(summary)
             else:
@@ -116,7 +114,6 @@ async def execute_bot_action(user_text, message_object_to_reply):
 
 async def handle_text_message(update, context):
     user_text = update.message.text
-    # print(f"Received text: {user_text}") # Optional: keep for local debugging
     await execute_bot_action(user_text, update.message)
 
 async def handle_voice_message(update, context):
@@ -127,10 +124,8 @@ async def handle_voice_message(update, context):
     try:
         voice_file_from_telegram = await context.bot.get_file(file_id)
         await voice_file_from_telegram.download_to_drive(custom_path=file_path)
-        # print(f"Downloaded voice file: {file_path}") # Optional: keep for local debugging
         transcribed_text = await audio_to_text(file_path)
         if transcribed_text:
-            # print(f"Transcribed text: {transcribed_text}") # Optional: keep for local debugging
             await update.message.reply_text(f"Heard: \"{transcribed_text}\"")
             await execute_bot_action(transcribed_text, update.message)
         else:
@@ -141,7 +136,6 @@ async def handle_voice_message(update, context):
     finally:
         if os.path.exists(file_path):
             os.remove(file_path)
-            # print(f"Deleted voice file: {file_path}") # Optional: keep for local debugging
 
 async def start(update, context):
     await update.message.reply_text("AI Assistant activated. Just tell me what you need, by text or voice!")
