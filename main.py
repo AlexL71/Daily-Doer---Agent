@@ -1,4 +1,3 @@
-# main.py (or app.py)
 from telegram.ext import Application, CommandHandler, MessageHandler, filters
 import config
 from bot_handlers import start, handle_text_message, handle_voice_message
