@@ -1,4 +1,3 @@
-# speech_service.py
 from google.cloud import speech
 from google.oauth2 import service_account
 import os
@@ -27,10 +26,7 @@ async def audio_to_text(audio_file_path):
             enable_automatic_punctuation=True,
         )
         
-        # print("Sending audio to Google Speech-to-Text (with explicit sample rate)...") # Optional debug
         response = await client.recognize(config=speech_config, audio=audio)
-        # print(f"FULL STT RESPONSE: {response}") # Optional debug
-        # print("Received response from Google Speech-to-Text.") # Optional debug
 
         transcript = ""
         if response.results:
@@ -39,8 +35,7 @@ async def audio_to_text(audio_file_path):
                     transcript += result.alternatives[0].transcript + " "
         
         if not transcript.strip():
-            # print("STT Result: No transcript returned or transcript is empty.") # Optional debug
-            pass # Return empty string if no transcript
+            pass 
 
         return transcript.strip()
     except Exception as e:
